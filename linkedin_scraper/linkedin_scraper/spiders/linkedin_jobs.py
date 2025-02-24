@@ -39,7 +39,7 @@ class LinkedInJobSpider(scrapy.Spider):
     }
 
 
-    SESSION_ID = 'AQEDAVfxB5UFTrdQAAABlR5UOzwAAAGVQmC_PFYAf7CMEwRIp0SZD_EYgPT5w_GcspTCtgoHGUKwvaz4dyXVYm75ojI9WZORnfC4_RBOcT4k5hE-iPouB12jPIuzT9ZZc8AloYTacnU1sKTuIxJetAhw'
+    SESSION_ID = 'AQEDAVgUJm4CLj9iAAABlTjP_tsAAAGVXNyC204AzMzQ7qSQL_EwBPLrTp3l4bJEHcjby8hK3ej75rbeacM6PEE5ulqa5qR7sNEewpsNAp_WHfXTpI6YzksvznxLunY5QHpAjpHiW0B8MK9NyCOq1FZc'
 
     def build_linkedin_jobs_url(self, keywords, location, date_posted, experience_levels, job_types):
         base_url = "https://www.linkedin.com/jobs/search/?"

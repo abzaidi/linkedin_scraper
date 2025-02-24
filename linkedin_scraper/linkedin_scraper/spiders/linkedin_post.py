@@ -9,39 +9,28 @@ from selenium.webdriver.common.keys import Keys
 import urllib.parse
 import time
 import random
+import os
 
 class LinkedInPostSpider(scrapy.Spider):
     name = "linkedin_post"
     allowed_domains = ["linkedin.com"]
-    
 
+    def __init__(self, *args, **kwargs):
+        super(LinkedInPostSpider, self).__init__(*args, **kwargs)
+        self.scraped_urls = set()
+        # Get values from environment variables
+        self.keywords = os.getenv("LINKEDIN_KEYWORDS", "Python Developer").split(",")
+        self.SCROLLS = int(os.getenv("LINKEDIN_SCROLLS", 2))
+        self.SESSION_ID = os.getenv("LINKEDIN_SESSION_ID", "")
 
-    
-    keywords = ["python developer", "jobs", "remote"]
-
-    SCROLLS = 2
-
-    SESSION_ID = 'AQEDAVfxB5UFTrdQAAABlR5UOzwAAAGVQmC_PFYAf7CMEwRIp0SZD_EYgPT5w_GcspTCtgoHGUKwvaz4dyXVYm75ojI9WZORnfC4_RBOcT4k5hE-iPouB12jPIuzT9ZZc8AloYTacnU1sKTuIxJetAhw'
-
-
-
-
-
-    def build_linkedin_content_url(keywords):
+    def build_linkedin_content_url(self):
         base_url = "https://www.linkedin.com/search/results/content/?"
-        
-        formatted_keywords = ", ".join([f'"{keyword}"' for keyword in keywords])
-        
+        formatted_keywords = ", ".join([f'"{keyword}"' for keyword in self.keywords])
         encoded_keywords = urllib.parse.quote(formatted_keywords)
-        
-        params = {
-            "keywords": encoded_keywords,  
-            "origin": "GLOBAL_SEARCH_HEADER",
-        }
-        
+        params = {"keywords": encoded_keywords, "origin": "GLOBAL_SEARCH_HEADER"}
         return base_url + "&".join([f"{k}={v}" for k, v in params.items()])
-    
-    start_urls = [build_linkedin_content_url(keywords)]
+
+    start_urls = []
 
     custom_settings = {
         'FEEDS': {
@@ -50,16 +39,18 @@ class LinkedInPostSpider(scrapy.Spider):
         },
     }
 
-    COOKIES = {
-        'li_at': SESSION_ID,  # Replace with your valid LinkedIn session cookie
-    }
+    # COOKIES = {
+    #     'li_at': self.SESSION_ID,  # Replace with your valid LinkedIn session cookie
+    # }
 
-    def __init__(self, *args, **kwargs):
-        super(LinkedInPostSpider, self).__init__(*args, **kwargs)
-        self.scraped_urls = set()
 
     def start_requests(self):
-        """ Start requests with LinkedIn session cookies. """
+        url = self.build_linkedin_content_url()
+        self.start_urls.append(url)
+
+        # Set LinkedIn session cookie dynamically
+        self.COOKIES = {'li_at': self.SESSION_ID}
+
         for url in self.start_urls:
             yield scrapy.Request(
                 url=url,

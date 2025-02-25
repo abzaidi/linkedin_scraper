@@ -54,8 +54,6 @@ class LinkedInJobSpider(scrapy.Spider):
         self.start_urls = [self.build_linkedin_jobs_url(self.KEYWORDS, self.LOCATION, self.DATE_POSTED, self.EXPERIENCE_LEVELS, self.JOB_TYPES)]
         self.scraped_urls = set()
 
-
-
     def build_linkedin_jobs_url(self, keywords, location, date_posted, experience_levels, job_types):
         """Builds a LinkedIn Jobs Search URL dynamically based on user inputs."""
         base_url = "https://www.linkedin.com/jobs/search/?"

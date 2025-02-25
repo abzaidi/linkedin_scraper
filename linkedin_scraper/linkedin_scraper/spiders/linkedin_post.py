@@ -18,7 +18,6 @@ class LinkedInPostSpider(scrapy.Spider):
     def __init__(self, *args, **kwargs):
         super(LinkedInPostSpider, self).__init__(*args, **kwargs)
         self.scraped_urls = set()
-        # Get values from environment variables
         self.keywords = os.getenv("LINKEDIN_KEYWORDS", "Python Developer").split(",")
         self.SCROLLS = int(os.getenv("LINKEDIN_SCROLLS", 2))
         self.SESSION_ID = os.getenv("LINKEDIN_SESSION_ID", "")
@@ -34,21 +33,15 @@ class LinkedInPostSpider(scrapy.Spider):
 
     custom_settings = {
         'FEEDS': {
-            'data/%(name)s_%(time)s.json': {'format': 'json'},
             'data/%(name)s_%(time)s.csv': {'format': 'csv'},
         },
     }
-
-    # COOKIES = {
-    #     'li_at': self.SESSION_ID,  # Replace with your valid LinkedIn session cookie
-    # }
 
 
     def start_requests(self):
         url = self.build_linkedin_content_url()
         self.start_urls.append(url)
 
-        # Set LinkedIn session cookie dynamically
         self.COOKIES = {'li_at': self.SESSION_ID}
 
         for url in self.start_urls:

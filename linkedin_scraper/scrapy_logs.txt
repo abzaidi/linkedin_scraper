@@ -29582,3 +29582,1457 @@ Traceback (most recent call last):
     raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=54189): Max retries exceeded with url: /session/73f9e9242a8df5d04cb33aa47072dff0/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x79f8e68ddd60>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2025-02-25 18:22:24 [scrapy.utils.log] INFO: Scrapy 2.12.0 started (bot: linkedin_scraper)
+2025-02-25 18:22:24 [scrapy.utils.log] INFO: Versions: lxml 5.3.1.0, libxml2 2.12.9, cssselect 1.2.0, parsel 1.10.0, w3lib 2.3.1, Twisted 24.11.0, Python 3.12.3 (main, Jan 17 2025, 18:03:48) [GCC 13.3.0], pyOpenSSL 25.0.0 (OpenSSL 3.4.1 11 Feb 2025), cryptography 44.0.1, Platform Linux-6.11.0-17-generic-x86_64-with-glibc2.39
+2025-02-25 18:22:24 [scrapy.addons] INFO: Enabled addons:
+[]
+2025-02-25 18:22:24 [scrapy.extensions.telnet] INFO: Telnet Password: 8bb32714be8f09de
+2025-02-25 18:22:24 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.feedexport.FeedExporter',
+ 'scrapy.extensions.logstats.LogStats']
+2025-02-25 18:22:24 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'linkedin_scraper',
+ 'CONCURRENT_REQUESTS': 10,
+ 'DOWNLOAD_DELAY': 3,
+ 'FEED_EXPORT_ENCODING': 'utf-8',
+ 'LOG_FILE': 'scrapy_logs.txt',
+ 'LOG_LEVEL': 'INFO',
+ 'NEWSPIDER_MODULE': 'linkedin_scraper.spiders',
+ 'RETRY_HTTP_CODES': [429, 500, 502, 503, 504, 522, 524, 408, 403],
+ 'RETRY_TIMES': 5,
+ 'SPIDER_MODULES': ['linkedin_scraper.spiders'],
+ 'TWISTED_REACTOR': 'twisted.internet.asyncioreactor.AsyncioSelectorReactor',
+ 'USER_AGENT': None}
+2025-02-25 18:22:24 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'linkedin_scraper.middlewares.CustomRetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2025-02-25 18:22:24 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2025-02-25 18:22:24 [scrapy.middleware] INFO: Enabled item pipelines:
+[]
+2025-02-25 18:22:24 [scrapy.core.engine] INFO: Spider opened
+2025-02-25 18:22:24 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2025-02-25 18:22:24 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
+2025-02-25 18:22:27 [undetected_chromedriver.patcher] INFO: patching driver executable /home/user/.local/share/undetected_chromedriver/undetected_chromedriver
+2025-02-25 18:22:46 [undetected_chromedriver.patcher] INFO: patching driver executable /home/user/.local/share/undetected_chromedriver/undetected_chromedriver
+2025-02-25 18:22:56 [scrapy.crawler] INFO: Received SIGINT, shutting down gracefully. Send again to force 
+2025-02-25 18:22:56 [scrapy.core.engine] ERROR: Error while obtaining start requests
+Traceback (most recent call last):
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+               ^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/connection.py", line 516, in getresponse
+    httplib_response = super().getresponse()
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/http/client.py", line 1428, in getresponse
+    response.begin()
+  File "/usr/lib/python3.12/http/client.py", line 331, in begin
+    version, status, reason = self._read_status()
+                              ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/http/client.py", line 300, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/scrapy/core/engine.py", line 185, in _next_request
+    request_or_item = next(self.slot.start_requests)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/linkedin_scraper/linkedin_scraper/spiders/google_jobs.py", line 53, in start_requests
+    yield from self.parse(response)
+  File "/home/user/scrapers/linkedin_scraper/linkedin_scraper/linkedin_scraper/spiders/google_jobs.py", line 67, in parse
+    driver.get(response.url)
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/undetected_chromedriver/__init__.py", line 665, in get
+    return super().get(url)
+           ^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 454, in get
+    self.execute(Command.GET, {"url": url})
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 427, in execute
+    response = self.command_executor.execute(driver_command, params)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/selenium/webdriver/remote/remote_connection.py", line 404, in execute
+    return self._request(command_info[0], url, body=data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/selenium/webdriver/remote/remote_connection.py", line 428, in _request
+    response = self._conn.request(method, url, body=body, headers=headers, timeout=self._client_config.timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/_request_methods.py", line 143, in request
+    return self.request_encode_body(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/_request_methods.py", line 278, in request_encode_body
+    return self.urlopen(method, url, **extra_kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/poolmanager.py", line 443, in urlopen
+    response = conn.urlopen(method, u.request_uri, **kw)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/util/retry.py", line 474, in increment
+    raise reraise(type(error), error, _stacktrace)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/util/util.py", line 38, in reraise
+    raise value.with_traceback(tb)
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+               ^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/connection.py", line 516, in getresponse
+    httplib_response = super().getresponse()
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/http/client.py", line 1428, in getresponse
+    response.begin()
+  File "/usr/lib/python3.12/http/client.py", line 331, in begin
+    version, status, reason = self._read_status()
+                              ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/http/client.py", line 300, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2025-02-25 18:22:56 [scrapy.core.engine] INFO: Closing spider (finished)
+2025-02-25 18:22:56 [scrapy.extensions.feedexport] INFO: Stored json feed (0 items) in: data/google_jobs_2025-02-25T13-22-24+00-00.json
+2025-02-25 18:22:56 [scrapy.extensions.feedexport] INFO: Stored csv feed (0 items) in: data/google_jobs_2025-02-25T13-22-24+00-00.csv
+2025-02-25 18:22:56 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'elapsed_time_seconds': 31.66507,
+ 'feedexport/success_count/FileFeedStorage': 2,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2025, 2, 25, 13, 22, 56, 213017, tzinfo=datetime.timezone.utc),
+ 'items_per_minute': None,
+ 'log_count/ERROR': 1,
+ 'log_count/INFO': 15,
+ 'memusage/max': 131887104,
+ 'memusage/startup': 131887104,
+ 'responses_per_minute': None,
+ 'start_time': datetime.datetime(2025, 2, 25, 13, 22, 24, 547947, tzinfo=datetime.timezone.utc)}
+2025-02-25 18:22:56 [scrapy.core.engine] INFO: Spider closed (finished)
+2025-02-25 18:32:49 [scrapy.utils.log] INFO: Scrapy 2.12.0 started (bot: linkedin_scraper)
+2025-02-25 18:32:49 [scrapy.utils.log] INFO: Versions: lxml 5.3.1.0, libxml2 2.12.9, cssselect 1.2.0, parsel 1.10.0, w3lib 2.3.1, Twisted 24.11.0, Python 3.12.3 (main, Jan 17 2025, 18:03:48) [GCC 13.3.0], pyOpenSSL 25.0.0 (OpenSSL 3.4.1 11 Feb 2025), cryptography 44.0.1, Platform Linux-6.11.0-17-generic-x86_64-with-glibc2.39
+2025-02-25 18:32:49 [scrapy.addons] INFO: Enabled addons:
+[]
+2025-02-25 18:32:49 [scrapy.extensions.telnet] INFO: Telnet Password: d0c5bcc12c12d546
+2025-02-25 18:32:49 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.feedexport.FeedExporter',
+ 'scrapy.extensions.logstats.LogStats']
+2025-02-25 18:32:49 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'linkedin_scraper',
+ 'CONCURRENT_REQUESTS': 10,
+ 'DOWNLOAD_DELAY': 3,
+ 'FEED_EXPORT_ENCODING': 'utf-8',
+ 'LOG_FILE': 'scrapy_logs.txt',
+ 'LOG_LEVEL': 'INFO',
+ 'NEWSPIDER_MODULE': 'linkedin_scraper.spiders',
+ 'RETRY_HTTP_CODES': [429, 500, 502, 503, 504, 522, 524, 408, 403],
+ 'RETRY_TIMES': 5,
+ 'SPIDER_MODULES': ['linkedin_scraper.spiders'],
+ 'TWISTED_REACTOR': 'twisted.internet.asyncioreactor.AsyncioSelectorReactor',
+ 'USER_AGENT': None}
+2025-02-25 18:32:49 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'linkedin_scraper.middlewares.CustomRetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2025-02-25 18:32:49 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2025-02-25 18:32:49 [scrapy.middleware] INFO: Enabled item pipelines:
+[]
+2025-02-25 18:32:49 [scrapy.core.engine] INFO: Spider opened
+2025-02-25 18:32:49 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2025-02-25 18:32:49 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
+2025-02-25 18:32:52 [undetected_chromedriver.patcher] INFO: patching driver executable /home/user/.local/share/undetected_chromedriver/undetected_chromedriver
+2025-02-25 18:33:00 [undetected_chromedriver.patcher] INFO: patching driver executable /home/user/.local/share/undetected_chromedriver/undetected_chromedriver
+2025-02-25 18:33:06 [google_jobs] INFO: No location not now button
+2025-02-25 18:33:10 [scrapy.crawler] INFO: Received SIGINT, shutting down gracefully. Send again to force 
+2025-02-25 18:33:10 [google_jobs] INFO: No load more button
+2025-02-25 18:33:15 [urllib3.connectionpool] WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x757781f7d880>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/6c2914ed44ab8cabcb5ee4100c2760c8/execute/sync
+2025-02-25 18:33:15 [urllib3.connectionpool] WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x757781f7d280>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/6c2914ed44ab8cabcb5ee4100c2760c8/execute/sync
+2025-02-25 18:33:15 [urllib3.connectionpool] WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x757781f7d4f0>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/6c2914ed44ab8cabcb5ee4100c2760c8/execute/sync
+2025-02-25 18:33:15 [scrapy.core.engine] ERROR: Error while obtaining start requests
+Traceback (most recent call last):
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/util/connection.py", line 85, in create_connection
+    raise err
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/connectionpool.py", line 493, in _make_request
+    conn.request(
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/connection.py", line 445, in request
+    self.endheaders()
+  File "/usr/lib/python3.12/http/client.py", line 1331, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.12/http/client.py", line 1091, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.12/http/client.py", line 1035, in send
+    self.connect()
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/connection.py", line 276, in connect
+    self.sock = self._new_conn()
+                ^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x757781f7e870>: Failed to establish a new connection: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/scrapy/core/engine.py", line 185, in _next_request
+    request_or_item = next(self.slot.start_requests)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/linkedin_scraper/linkedin_scraper/spiders/google_jobs.py", line 53, in start_requests
+    yield from self.parse(response)
+  File "/home/user/scrapers/linkedin_scraper/linkedin_scraper/linkedin_scraper/spiders/google_jobs.py", line 86, in parse
+    self.scroll_to_load_jobs(driver, max_scrolls=self.SCROLLS)
+  File "/home/user/scrapers/linkedin_scraper/linkedin_scraper/linkedin_scraper/spiders/google_jobs.py", line 135, in scroll_to_load_jobs
+    driver.execute_script("window.scrollBy(0, 1000);")
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 528, in execute_script
+    return self.execute(command, {"script": script, "args": converted_args})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 427, in execute
+    response = self.command_executor.execute(driver_command, params)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/selenium/webdriver/remote/remote_connection.py", line 404, in execute
+    return self._request(command_info[0], url, body=data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/selenium/webdriver/remote/remote_connection.py", line 428, in _request
+    response = self._conn.request(method, url, body=body, headers=headers, timeout=self._client_config.timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/_request_methods.py", line 143, in request
+    return self.request_encode_body(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/_request_methods.py", line 278, in request_encode_body
+    return self.urlopen(method, url, **extra_kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/poolmanager.py", line 443, in urlopen
+    response = conn.urlopen(method, u.request_uri, **kw)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/connectionpool.py", line 871, in urlopen
+    return self.urlopen(
+           ^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/connectionpool.py", line 871, in urlopen
+    return self.urlopen(
+           ^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/connectionpool.py", line 871, in urlopen
+    return self.urlopen(
+           ^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/util/retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=42589): Max retries exceeded with url: /session/6c2914ed44ab8cabcb5ee4100c2760c8/execute/sync (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x757781f7e870>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2025-02-25 18:33:15 [scrapy.core.engine] INFO: Closing spider (finished)
+2025-02-25 18:33:15 [scrapy.extensions.feedexport] INFO: Stored json feed (0 items) in: data/google_jobs_2025-02-25T13-32-49+00-00.json
+2025-02-25 18:33:15 [scrapy.extensions.feedexport] INFO: Stored csv feed (0 items) in: data/google_jobs_2025-02-25T13-32-49+00-00.csv
+2025-02-25 18:33:15 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'elapsed_time_seconds': 25.964397,
+ 'feedexport/success_count/FileFeedStorage': 2,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2025, 2, 25, 13, 33, 15, 56762, tzinfo=datetime.timezone.utc),
+ 'items_per_minute': None,
+ 'log_count/ERROR': 1,
+ 'log_count/INFO': 17,
+ 'log_count/WARNING': 3,
+ 'memusage/max': 132792320,
+ 'memusage/startup': 132792320,
+ 'responses_per_minute': None,
+ 'start_time': datetime.datetime(2025, 2, 25, 13, 32, 49, 92365, tzinfo=datetime.timezone.utc)}
+2025-02-25 18:33:15 [scrapy.core.engine] INFO: Spider closed (finished)
+2025-02-25 18:37:08 [scrapy.utils.log] INFO: Scrapy 2.12.0 started (bot: linkedin_scraper)
+2025-02-25 18:37:08 [scrapy.utils.log] INFO: Versions: lxml 5.3.1.0, libxml2 2.12.9, cssselect 1.2.0, parsel 1.10.0, w3lib 2.3.1, Twisted 24.11.0, Python 3.12.3 (main, Jan 17 2025, 18:03:48) [GCC 13.3.0], pyOpenSSL 25.0.0 (OpenSSL 3.4.1 11 Feb 2025), cryptography 44.0.1, Platform Linux-6.11.0-17-generic-x86_64-with-glibc2.39
+2025-02-25 18:37:08 [scrapy.addons] INFO: Enabled addons:
+[]
+2025-02-25 18:37:08 [scrapy.extensions.telnet] INFO: Telnet Password: 042d7c88eadb5b4f
+2025-02-25 18:37:08 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.feedexport.FeedExporter',
+ 'scrapy.extensions.logstats.LogStats']
+2025-02-25 18:37:08 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'linkedin_scraper',
+ 'CONCURRENT_REQUESTS': 10,
+ 'DOWNLOAD_DELAY': 3,
+ 'FEED_EXPORT_ENCODING': 'utf-8',
+ 'LOG_FILE': 'scrapy_logs.txt',
+ 'LOG_LEVEL': 'INFO',
+ 'NEWSPIDER_MODULE': 'linkedin_scraper.spiders',
+ 'RETRY_HTTP_CODES': [429, 500, 502, 503, 504, 522, 524, 408, 403],
+ 'RETRY_TIMES': 5,
+ 'SPIDER_MODULES': ['linkedin_scraper.spiders'],
+ 'TWISTED_REACTOR': 'twisted.internet.asyncioreactor.AsyncioSelectorReactor',
+ 'USER_AGENT': None}
+2025-02-25 18:37:08 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'linkedin_scraper.middlewares.CustomRetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2025-02-25 18:37:08 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2025-02-25 18:37:08 [scrapy.middleware] INFO: Enabled item pipelines:
+[]
+2025-02-25 18:37:08 [scrapy.core.engine] INFO: Spider opened
+2025-02-25 18:37:08 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2025-02-25 18:37:08 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
+2025-02-25 18:37:11 [undetected_chromedriver.patcher] INFO: patching driver executable /home/user/.local/share/undetected_chromedriver/undetected_chromedriver
+2025-02-25 18:37:20 [undetected_chromedriver.patcher] INFO: patching driver executable /home/user/.local/share/undetected_chromedriver/undetected_chromedriver
+2025-02-25 18:37:27 [scrapy.crawler] INFO: Received SIGINT, shutting down gracefully. Send again to force 
+2025-02-25 18:37:27 [urllib3.connectionpool] WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x79c17067a600>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/a845e0f8f825213cc6b89bbfaea128ee/element
+2025-02-25 18:37:27 [urllib3.connectionpool] WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x79c17067a180>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/a845e0f8f825213cc6b89bbfaea128ee/element
+2025-02-25 18:37:27 [urllib3.connectionpool] WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x79c170678e30>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/a845e0f8f825213cc6b89bbfaea128ee/element
+2025-02-25 18:37:27 [google_jobs] INFO: No location not now button
+2025-02-25 18:37:30 [urllib3.connectionpool] WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x79c170679670>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/a845e0f8f825213cc6b89bbfaea128ee/element
+2025-02-25 18:37:30 [urllib3.connectionpool] WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x79c17067ab40>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/a845e0f8f825213cc6b89bbfaea128ee/element
+2025-02-25 18:37:30 [urllib3.connectionpool] WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x79c17067adb0>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/a845e0f8f825213cc6b89bbfaea128ee/element
+2025-02-25 18:37:30 [google_jobs] INFO: No load more button
+2025-02-25 18:37:32 [scrapy.crawler] INFO: Received SIGINT twice, forcing unclean shutdown
+2025-02-25 18:37:33 [urllib3.connectionpool] WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x79c17067b440>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/a845e0f8f825213cc6b89bbfaea128ee/execute/sync
+2025-02-25 18:37:33 [urllib3.connectionpool] WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x79c17067b620>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/a845e0f8f825213cc6b89bbfaea128ee/execute/sync
+2025-02-25 18:37:33 [urllib3.connectionpool] WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x79c17067b860>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/a845e0f8f825213cc6b89bbfaea128ee/execute/sync
+2025-02-25 18:37:33 [scrapy.core.engine] ERROR: Error while obtaining start requests
+Traceback (most recent call last):
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/util/connection.py", line 85, in create_connection
+    raise err
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/connectionpool.py", line 493, in _make_request
+    conn.request(
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/connection.py", line 445, in request
+    self.endheaders()
+  File "/usr/lib/python3.12/http/client.py", line 1331, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.12/http/client.py", line 1091, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.12/http/client.py", line 1035, in send
+    self.connect()
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/connection.py", line 276, in connect
+    self.sock = self._new_conn()
+                ^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x79c1706797c0>: Failed to establish a new connection: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/scrapy/core/engine.py", line 185, in _next_request
+    request_or_item = next(self.slot.start_requests)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/linkedin_scraper/linkedin_scraper/spiders/google_jobs.py", line 53, in start_requests
+    yield from self.parse(response)
+  File "/home/user/scrapers/linkedin_scraper/linkedin_scraper/linkedin_scraper/spiders/google_jobs.py", line 86, in parse
+    self.scroll_to_load_jobs(driver, max_scrolls=self.SCROLLS)
+  File "/home/user/scrapers/linkedin_scraper/linkedin_scraper/linkedin_scraper/spiders/google_jobs.py", line 135, in scroll_to_load_jobs
+    driver.execute_script("window.scrollBy(0, 1000);")
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 528, in execute_script
+    return self.execute(command, {"script": script, "args": converted_args})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 427, in execute
+    response = self.command_executor.execute(driver_command, params)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/selenium/webdriver/remote/remote_connection.py", line 404, in execute
+    return self._request(command_info[0], url, body=data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/selenium/webdriver/remote/remote_connection.py", line 428, in _request
+    response = self._conn.request(method, url, body=body, headers=headers, timeout=self._client_config.timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/_request_methods.py", line 143, in request
+    return self.request_encode_body(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/_request_methods.py", line 278, in request_encode_body
+    return self.urlopen(method, url, **extra_kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/poolmanager.py", line 443, in urlopen
+    response = conn.urlopen(method, u.request_uri, **kw)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/connectionpool.py", line 871, in urlopen
+    return self.urlopen(
+           ^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/connectionpool.py", line 871, in urlopen
+    return self.urlopen(
+           ^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/connectionpool.py", line 871, in urlopen
+    return self.urlopen(
+           ^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/util/retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=50137): Max retries exceeded with url: /session/a845e0f8f825213cc6b89bbfaea128ee/execute/sync (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x79c1706797c0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2025-02-25 18:37:33 [scrapy.core.engine] INFO: Closing spider (finished)
+2025-02-25 18:37:33 [scrapy.extensions.feedexport] INFO: Stored json feed (0 items) in: data/google_jobs_2025-02-25T13-37-08+00-00.json
+2025-02-25 18:37:33 [scrapy.extensions.feedexport] INFO: Stored csv feed (0 items) in: data/google_jobs_2025-02-25T13-37-08+00-00.csv
+2025-02-25 18:43:03 [scrapy.utils.log] INFO: Scrapy 2.12.0 started (bot: linkedin_scraper)
+2025-02-25 18:43:03 [scrapy.utils.log] INFO: Versions: lxml 5.3.1.0, libxml2 2.12.9, cssselect 1.2.0, parsel 1.10.0, w3lib 2.3.1, Twisted 24.11.0, Python 3.12.3 (main, Jan 17 2025, 18:03:48) [GCC 13.3.0], pyOpenSSL 25.0.0 (OpenSSL 3.4.1 11 Feb 2025), cryptography 44.0.1, Platform Linux-6.11.0-17-generic-x86_64-with-glibc2.39
+2025-02-25 18:43:03 [scrapy.addons] INFO: Enabled addons:
+[]
+2025-02-25 18:43:03 [scrapy.extensions.telnet] INFO: Telnet Password: 7459234aea404ed8
+2025-02-25 18:43:03 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.feedexport.FeedExporter',
+ 'scrapy.extensions.logstats.LogStats']
+2025-02-25 18:43:03 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'linkedin_scraper',
+ 'CONCURRENT_REQUESTS': 10,
+ 'DOWNLOAD_DELAY': 3,
+ 'FEED_EXPORT_ENCODING': 'utf-8',
+ 'LOG_FILE': 'scrapy_logs.txt',
+ 'LOG_LEVEL': 'INFO',
+ 'NEWSPIDER_MODULE': 'linkedin_scraper.spiders',
+ 'RETRY_HTTP_CODES': [429, 500, 502, 503, 504, 522, 524, 408, 403],
+ 'RETRY_TIMES': 5,
+ 'SPIDER_MODULES': ['linkedin_scraper.spiders'],
+ 'TWISTED_REACTOR': 'twisted.internet.asyncioreactor.AsyncioSelectorReactor',
+ 'USER_AGENT': None}
+2025-02-25 18:43:03 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'linkedin_scraper.middlewares.CustomRetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2025-02-25 18:43:03 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2025-02-25 18:43:03 [scrapy.middleware] INFO: Enabled item pipelines:
+[]
+2025-02-25 18:43:03 [scrapy.core.engine] INFO: Spider opened
+2025-02-25 18:43:03 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2025-02-25 18:43:03 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
+2025-02-25 18:43:06 [undetected_chromedriver.patcher] INFO: patching driver executable /home/user/.local/share/undetected_chromedriver/undetected_chromedriver
+2025-02-25 18:43:17 [undetected_chromedriver.patcher] INFO: patching driver executable /home/user/.local/share/undetected_chromedriver/undetected_chromedriver
+2025-02-25 18:43:21 [google_jobs] INFO: No location not now button
+2025-02-25 18:43:32 [scrapy.crawler] INFO: Received SIGINT, shutting down gracefully. Send again to force 
+2025-02-25 18:43:33 [urllib3.connectionpool] WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x76d5998860c0>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/90ebfbf46bd6a4fb09c4feb2d4e5a5e2/element
+2025-02-25 18:43:33 [urllib3.connectionpool] WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x76d599885100>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/90ebfbf46bd6a4fb09c4feb2d4e5a5e2/element
+2025-02-25 18:43:33 [urllib3.connectionpool] WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x76d599884fe0>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/90ebfbf46bd6a4fb09c4feb2d4e5a5e2/element
+2025-02-25 18:43:33 [urllib3.connectionpool] WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x76d5998866c0>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/90ebfbf46bd6a4fb09c4feb2d4e5a5e2/element
+2025-02-25 18:43:33 [urllib3.connectionpool] WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x76d599886900>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/90ebfbf46bd6a4fb09c4feb2d4e5a5e2/element
+2025-02-25 18:43:33 [urllib3.connectionpool] WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x76d599886b40>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/90ebfbf46bd6a4fb09c4feb2d4e5a5e2/element
+2025-02-25 18:43:33 [google_jobs] INFO: Timeout: No jobs found within 15 seconds.
+2025-02-25 18:43:33 [urllib3.connectionpool] WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x76d5998870e0>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/90ebfbf46bd6a4fb09c4feb2d4e5a5e2/elements
+2025-02-25 18:43:33 [urllib3.connectionpool] WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x76d5998872c0>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/90ebfbf46bd6a4fb09c4feb2d4e5a5e2/elements
+2025-02-25 18:43:33 [urllib3.connectionpool] WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x76d599887500>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/90ebfbf46bd6a4fb09c4feb2d4e5a5e2/elements
+2025-02-25 18:43:33 [scrapy.core.engine] ERROR: Error while obtaining start requests
+Traceback (most recent call last):
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/util/connection.py", line 85, in create_connection
+    raise err
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/connectionpool.py", line 493, in _make_request
+    conn.request(
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/connection.py", line 445, in request
+    self.endheaders()
+  File "/usr/lib/python3.12/http/client.py", line 1331, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.12/http/client.py", line 1091, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.12/http/client.py", line 1035, in send
+    self.connect()
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/connection.py", line 276, in connect
+    self.sock = self._new_conn()
+                ^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x76d599886630>: Failed to establish a new connection: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/scrapy/core/engine.py", line 185, in _next_request
+    request_or_item = next(self.slot.start_requests)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/linkedin_scraper/linkedin_scraper/spiders/google_jobs.py", line 53, in start_requests
+    yield from self.parse(response)
+  File "/home/user/scrapers/linkedin_scraper/linkedin_scraper/linkedin_scraper/spiders/google_jobs.py", line 94, in parse
+    job_items = driver.find_elements(By.XPATH, '//a[@class="MQUd2b"]')
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 926, in find_elements
+    return self.execute(Command.FIND_ELEMENTS, {"using": by, "value": value})["value"] or []
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 427, in execute
+    response = self.command_executor.execute(driver_command, params)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/selenium/webdriver/remote/remote_connection.py", line 404, in execute
+    return self._request(command_info[0], url, body=data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/selenium/webdriver/remote/remote_connection.py", line 428, in _request
+    response = self._conn.request(method, url, body=body, headers=headers, timeout=self._client_config.timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/_request_methods.py", line 143, in request
+    return self.request_encode_body(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/_request_methods.py", line 278, in request_encode_body
+    return self.urlopen(method, url, **extra_kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/poolmanager.py", line 443, in urlopen
+    response = conn.urlopen(method, u.request_uri, **kw)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/connectionpool.py", line 871, in urlopen
+    return self.urlopen(
+           ^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/connectionpool.py", line 871, in urlopen
+    return self.urlopen(
+           ^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/connectionpool.py", line 871, in urlopen
+    return self.urlopen(
+           ^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/util/retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=60905): Max retries exceeded with url: /session/90ebfbf46bd6a4fb09c4feb2d4e5a5e2/elements (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x76d599886630>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2025-02-25 18:43:33 [scrapy.core.engine] INFO: Closing spider (finished)
+2025-02-25 18:43:33 [scrapy.extensions.feedexport] INFO: Stored json feed (0 items) in: data/google_jobs_2025-02-25T13-43-03+00-00.json
+2025-02-25 18:43:33 [scrapy.extensions.feedexport] INFO: Stored csv feed (0 items) in: data/google_jobs_2025-02-25T13-43-03+00-00.csv
+2025-02-25 18:43:33 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'elapsed_time_seconds': 30.140339,
+ 'feedexport/success_count/FileFeedStorage': 2,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2025, 2, 25, 13, 43, 33, 602867, tzinfo=datetime.timezone.utc),
+ 'items_per_minute': None,
+ 'log_count/ERROR': 1,
+ 'log_count/INFO': 17,
+ 'log_count/WARNING': 9,
+ 'memusage/max': 131616768,
+ 'memusage/startup': 131616768,
+ 'responses_per_minute': None,
+ 'start_time': datetime.datetime(2025, 2, 25, 13, 43, 3, 462528, tzinfo=datetime.timezone.utc)}
+2025-02-25 18:43:33 [scrapy.core.engine] INFO: Spider closed (finished)
+2025-02-25 18:45:53 [scrapy.utils.log] INFO: Scrapy 2.12.0 started (bot: linkedin_scraper)
+2025-02-25 18:45:53 [scrapy.utils.log] INFO: Versions: lxml 5.3.1.0, libxml2 2.12.9, cssselect 1.2.0, parsel 1.10.0, w3lib 2.3.1, Twisted 24.11.0, Python 3.12.3 (main, Jan 17 2025, 18:03:48) [GCC 13.3.0], pyOpenSSL 25.0.0 (OpenSSL 3.4.1 11 Feb 2025), cryptography 44.0.1, Platform Linux-6.11.0-17-generic-x86_64-with-glibc2.39
+2025-02-25 18:45:53 [scrapy.addons] INFO: Enabled addons:
+[]
+2025-02-25 18:45:53 [scrapy.extensions.telnet] INFO: Telnet Password: 9bcec9a6d44a26ca
+2025-02-25 18:45:53 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.feedexport.FeedExporter',
+ 'scrapy.extensions.logstats.LogStats']
+2025-02-25 18:45:53 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'linkedin_scraper',
+ 'CONCURRENT_REQUESTS': 10,
+ 'DOWNLOAD_DELAY': 3,
+ 'FEED_EXPORT_ENCODING': 'utf-8',
+ 'LOG_FILE': 'scrapy_logs.txt',
+ 'LOG_LEVEL': 'INFO',
+ 'NEWSPIDER_MODULE': 'linkedin_scraper.spiders',
+ 'RETRY_HTTP_CODES': [429, 500, 502, 503, 504, 522, 524, 408, 403],
+ 'RETRY_TIMES': 5,
+ 'SPIDER_MODULES': ['linkedin_scraper.spiders'],
+ 'TWISTED_REACTOR': 'twisted.internet.asyncioreactor.AsyncioSelectorReactor',
+ 'USER_AGENT': None}
+2025-02-25 18:45:53 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'linkedin_scraper.middlewares.CustomRetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2025-02-25 18:45:53 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2025-02-25 18:45:53 [scrapy.middleware] INFO: Enabled item pipelines:
+[]
+2025-02-25 18:45:53 [scrapy.core.engine] INFO: Spider opened
+2025-02-25 18:45:53 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2025-02-25 18:45:53 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
+2025-02-25 18:45:55 [undetected_chromedriver.patcher] INFO: patching driver executable /home/user/.local/share/undetected_chromedriver/undetected_chromedriver
+2025-02-25 18:46:05 [undetected_chromedriver.patcher] INFO: patching driver executable /home/user/.local/share/undetected_chromedriver/undetected_chromedriver
+2025-02-25 18:46:11 [google_jobs] INFO: No location not now button
+2025-02-25 18:46:53 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 7 items (at 7 items/min)
+2025-02-25 18:47:08 [scrapy.core.engine] INFO: Closing spider (finished)
+2025-02-25 18:47:08 [scrapy.extensions.feedexport] INFO: Stored json feed (10 items) in: data/google_jobs_2025-02-25T13-45-53+00-00.json
+2025-02-25 18:47:08 [scrapy.extensions.feedexport] INFO: Stored csv feed (10 items) in: data/google_jobs_2025-02-25T13-45-53+00-00.csv
+2025-02-25 18:47:08 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'elapsed_time_seconds': 75.366833,
+ 'feedexport/success_count/FileFeedStorage': 2,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2025, 2, 25, 13, 47, 8, 460690, tzinfo=datetime.timezone.utc),
+ 'item_scraped_count': 10,
+ 'items_per_minute': None,
+ 'log_count/INFO': 16,
+ 'memusage/max': 131948544,
+ 'memusage/startup': 131948544,
+ 'responses_per_minute': None,
+ 'start_time': datetime.datetime(2025, 2, 25, 13, 45, 53, 93857, tzinfo=datetime.timezone.utc)}
+2025-02-25 18:47:08 [scrapy.core.engine] INFO: Spider closed (finished)
+2025-02-25 18:50:11 [scrapy.utils.log] INFO: Scrapy 2.12.0 started (bot: linkedin_scraper)
+2025-02-25 18:50:11 [scrapy.utils.log] INFO: Versions: lxml 5.3.1.0, libxml2 2.12.9, cssselect 1.2.0, parsel 1.10.0, w3lib 2.3.1, Twisted 24.11.0, Python 3.12.3 (main, Jan 17 2025, 18:03:48) [GCC 13.3.0], pyOpenSSL 25.0.0 (OpenSSL 3.4.1 11 Feb 2025), cryptography 44.0.1, Platform Linux-6.11.0-17-generic-x86_64-with-glibc2.39
+2025-02-25 18:50:11 [scrapy.addons] INFO: Enabled addons:
+[]
+2025-02-25 18:50:11 [scrapy.extensions.telnet] INFO: Telnet Password: fe23ada7305653ef
+2025-02-25 18:50:11 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.feedexport.FeedExporter',
+ 'scrapy.extensions.logstats.LogStats']
+2025-02-25 18:50:11 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'linkedin_scraper',
+ 'CONCURRENT_REQUESTS': 10,
+ 'DOWNLOAD_DELAY': 3,
+ 'FEED_EXPORT_ENCODING': 'utf-8',
+ 'LOG_FILE': 'scrapy_logs.txt',
+ 'LOG_LEVEL': 'INFO',
+ 'NEWSPIDER_MODULE': 'linkedin_scraper.spiders',
+ 'RETRY_HTTP_CODES': [429, 500, 502, 503, 504, 522, 524, 408, 403],
+ 'RETRY_TIMES': 5,
+ 'SPIDER_MODULES': ['linkedin_scraper.spiders'],
+ 'TWISTED_REACTOR': 'twisted.internet.asyncioreactor.AsyncioSelectorReactor',
+ 'USER_AGENT': None}
+2025-02-25 18:50:11 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'linkedin_scraper.middlewares.CustomRetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2025-02-25 18:50:11 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2025-02-25 18:50:11 [scrapy.middleware] INFO: Enabled item pipelines:
+[]
+2025-02-25 18:50:11 [scrapy.core.engine] INFO: Spider opened
+2025-02-25 18:50:11 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2025-02-25 18:50:11 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
+2025-02-25 18:50:14 [undetected_chromedriver.patcher] INFO: patching driver executable /home/user/.local/share/undetected_chromedriver/undetected_chromedriver
+2025-02-25 18:50:16 [scrapy.crawler] INFO: Received SIGTERM, shutting down gracefully. Send again to force 
+2025-02-25 18:50:22 [undetected_chromedriver.patcher] INFO: patching driver executable /home/user/.local/share/undetected_chromedriver/undetected_chromedriver
+2025-02-25 18:50:27 [scrapy.crawler] INFO: Received SIGINT twice, forcing unclean shutdown
+2025-02-25 18:50:28 [urllib3.connectionpool] WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x72c0cb07a180>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/cc1e9ca3c35b41e1a8b65c9ef0f28773/element
+2025-02-25 18:50:28 [urllib3.connectionpool] WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x72c0cb0795b0>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/cc1e9ca3c35b41e1a8b65c9ef0f28773/element
+2025-02-25 18:50:28 [urllib3.connectionpool] WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x72c0cb079970>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/cc1e9ca3c35b41e1a8b65c9ef0f28773/element
+2025-02-25 18:50:28 [google_jobs] INFO: No location not now button
+2025-02-25 18:50:32 [urllib3.connectionpool] WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x72c0cb079400>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/cc1e9ca3c35b41e1a8b65c9ef0f28773/element
+2025-02-25 18:50:32 [urllib3.connectionpool] WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x72c0cb07a8d0>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/cc1e9ca3c35b41e1a8b65c9ef0f28773/element
+2025-02-25 18:50:32 [urllib3.connectionpool] WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x72c0cb07ab40>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/cc1e9ca3c35b41e1a8b65c9ef0f28773/element
+2025-02-25 18:50:32 [google_jobs] INFO: No load more button
+2025-02-25 18:50:36 [urllib3.connectionpool] WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x72c0cb07b110>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/cc1e9ca3c35b41e1a8b65c9ef0f28773/element
+2025-02-25 18:50:36 [urllib3.connectionpool] WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x72c0cb07b350>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/cc1e9ca3c35b41e1a8b65c9ef0f28773/element
+2025-02-25 18:50:36 [urllib3.connectionpool] WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x72c0cb07b590>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/cc1e9ca3c35b41e1a8b65c9ef0f28773/element
+2025-02-25 18:50:36 [google_jobs] INFO: Timeout: No jobs found within 15 seconds.
+2025-02-25 18:50:36 [urllib3.connectionpool] WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x72c0cb07ad50>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/cc1e9ca3c35b41e1a8b65c9ef0f28773/elements
+2025-02-25 18:50:36 [urllib3.connectionpool] WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x72c0cb07aa20>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/cc1e9ca3c35b41e1a8b65c9ef0f28773/elements
+2025-02-25 18:50:36 [urllib3.connectionpool] WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x72c0cb079400>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/cc1e9ca3c35b41e1a8b65c9ef0f28773/elements
+2025-02-25 18:50:36 [scrapy.core.engine] ERROR: Error while obtaining start requests
+Traceback (most recent call last):
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/util/connection.py", line 85, in create_connection
+    raise err
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/connectionpool.py", line 493, in _make_request
+    conn.request(
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/connection.py", line 445, in request
+    self.endheaders()
+  File "/usr/lib/python3.12/http/client.py", line 1331, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.12/http/client.py", line 1091, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.12/http/client.py", line 1035, in send
+    self.connect()
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/connection.py", line 276, in connect
+    self.sock = self._new_conn()
+                ^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x72c0cb079a30>: Failed to establish a new connection: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/scrapy/core/engine.py", line 185, in _next_request
+    request_or_item = next(self.slot.start_requests)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/linkedin_scraper/linkedin_scraper/spiders/google_jobs.py", line 53, in start_requests
+    yield from self.parse(response)
+  File "/home/user/scrapers/linkedin_scraper/linkedin_scraper/linkedin_scraper/spiders/google_jobs.py", line 94, in parse
+    job_items = driver.find_elements(By.XPATH, '//a[@class="MQUd2b"]')
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 926, in find_elements
+    return self.execute(Command.FIND_ELEMENTS, {"using": by, "value": value})["value"] or []
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 427, in execute
+    response = self.command_executor.execute(driver_command, params)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/selenium/webdriver/remote/remote_connection.py", line 404, in execute
+    return self._request(command_info[0], url, body=data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/selenium/webdriver/remote/remote_connection.py", line 428, in _request
+    response = self._conn.request(method, url, body=body, headers=headers, timeout=self._client_config.timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/_request_methods.py", line 143, in request
+    return self.request_encode_body(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/_request_methods.py", line 278, in request_encode_body
+    return self.urlopen(method, url, **extra_kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/poolmanager.py", line 443, in urlopen
+    response = conn.urlopen(method, u.request_uri, **kw)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/connectionpool.py", line 871, in urlopen
+    return self.urlopen(
+           ^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/connectionpool.py", line 871, in urlopen
+    return self.urlopen(
+           ^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/connectionpool.py", line 871, in urlopen
+    return self.urlopen(
+           ^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "/home/user/scrapers/linkedin_scraper/venv/lib/python3.12/site-packages/urllib3/util/retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=37985): Max retries exceeded with url: /session/cc1e9ca3c35b41e1a8b65c9ef0f28773/elements (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x72c0cb079a30>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2025-02-25 18:50:36 [scrapy.core.engine] INFO: Closing spider (finished)
+2025-02-25 18:50:36 [scrapy.extensions.feedexport] INFO: Stored json feed (0 items) in: data/google_jobs_2025-02-25T13-50-11+00-00.json
+2025-02-25 18:50:36 [scrapy.extensions.feedexport] INFO: Stored csv feed (0 items) in: data/google_jobs_2025-02-25T13-50-11+00-00.csv
+2025-02-25 19:12:29 [scrapy.utils.log] INFO: Scrapy 2.12.0 started (bot: linkedin_scraper)
+2025-02-25 19:12:29 [scrapy.utils.log] INFO: Versions: lxml 5.3.1.0, libxml2 2.12.9, cssselect 1.2.0, parsel 1.10.0, w3lib 2.3.1, Twisted 24.11.0, Python 3.12.3 (main, Feb  4 2025, 14:48:35) [GCC 13.3.0], pyOpenSSL 25.0.0 (OpenSSL 3.4.1 11 Feb 2025), cryptography 44.0.1, Platform Linux-6.11.0-17-generic-x86_64-with-glibc2.39
+2025-02-25 19:12:29 [scrapy.addons] INFO: Enabled addons:
+[]
+2025-02-25 19:12:29 [scrapy.extensions.telnet] INFO: Telnet Password: 092a85e13ca9c21b
+2025-02-25 19:12:29 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.feedexport.FeedExporter',
+ 'scrapy.extensions.logstats.LogStats']
+2025-02-25 19:12:29 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'linkedin_scraper',
+ 'CONCURRENT_REQUESTS': 10,
+ 'DOWNLOAD_DELAY': 3,
+ 'FEED_EXPORT_ENCODING': 'utf-8',
+ 'LOG_FILE': 'scrapy_logs.txt',
+ 'LOG_LEVEL': 'INFO',
+ 'NEWSPIDER_MODULE': 'linkedin_scraper.spiders',
+ 'RETRY_HTTP_CODES': [429, 500, 502, 503, 504, 522, 524, 408, 403],
+ 'RETRY_TIMES': 5,
+ 'SPIDER_MODULES': ['linkedin_scraper.spiders'],
+ 'TWISTED_REACTOR': 'twisted.internet.asyncioreactor.AsyncioSelectorReactor',
+ 'USER_AGENT': None}
+2025-02-25 19:12:29 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'linkedin_scraper.middlewares.CustomRetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2025-02-25 19:12:29 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2025-02-25 19:12:29 [scrapy.middleware] INFO: Enabled item pipelines:
+[]
+2025-02-25 19:12:29 [scrapy.core.engine] INFO: Spider opened
+2025-02-25 19:12:29 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2025-02-25 19:12:29 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
+2025-02-25 19:12:33 [undetected_chromedriver.patcher] INFO: patching driver executable /home/user/.local/share/undetected_chromedriver/undetected_chromedriver
+2025-02-25 19:12:41 [undetected_chromedriver.patcher] INFO: patching driver executable /home/user/.local/share/undetected_chromedriver/undetected_chromedriver
+2025-02-25 19:12:47 [google_jobs] INFO: No location not now button
+2025-02-25 19:13:29 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 7 items (at 7 items/min)
+2025-02-25 19:13:35 [scrapy.crawler] INFO: Received SIGINT, shutting down gracefully. Send again to force 
+2025-02-25 19:13:36 [urllib3.connectionpool] WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x79ae69c76930>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/e5eda4ca7e7d823a7584b957fb00390f/element
+2025-02-25 19:13:36 [urllib3.connectionpool] WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x79ae69c763c0>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/e5eda4ca7e7d823a7584b957fb00390f/element
+2025-02-25 19:13:36 [urllib3.connectionpool] WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x79ae69c772f0>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/e5eda4ca7e7d823a7584b957fb00390f/element
+2025-02-25 19:13:36 [google_jobs] ERROR: Error extracting job details: HTTPConnectionPool(host='localhost', port=40457): Max retries exceeded with url: /session/e5eda4ca7e7d823a7584b957fb00390f/element (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x79ae69c77530>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2025-02-25 19:13:36 [urllib3.connectionpool] WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x79ae69c77860>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/e5eda4ca7e7d823a7584b957fb00390f/elements
+2025-02-25 19:13:36 [urllib3.connectionpool] WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x79ae69c77a40>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/e5eda4ca7e7d823a7584b957fb00390f/elements
+2025-02-25 19:13:36 [urllib3.connectionpool] WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x79ae69c77c80>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/e5eda4ca7e7d823a7584b957fb00390f/elements
+2025-02-25 19:13:36 [google_jobs] ERROR: Error extracting job details: HTTPConnectionPool(host='localhost', port=40457): Max retries exceeded with url: /session/e5eda4ca7e7d823a7584b957fb00390f/elements (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x79ae69c75a30>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2025-02-25 19:13:36 [scrapy.core.engine] INFO: Closing spider (finished)
+2025-02-25 19:13:36 [scrapy.extensions.feedexport] INFO: Stored json feed (8 items) in: data/google_jobs_2025-02-25T14-12-29+00-00.json
+2025-02-25 19:13:36 [scrapy.extensions.feedexport] INFO: Stored csv feed (8 items) in: data/google_jobs_2025-02-25T14-12-29+00-00.csv
+2025-02-25 19:13:36 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'elapsed_time_seconds': 67.520862,
+ 'feedexport/success_count/FileFeedStorage': 2,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2025, 2, 25, 14, 13, 36, 875222, tzinfo=datetime.timezone.utc),
+ 'item_scraped_count': 8,
+ 'items_per_minute': None,
+ 'log_count/ERROR': 2,
+ 'log_count/INFO': 17,
+ 'log_count/WARNING': 6,
+ 'memusage/max': 132374528,
+ 'memusage/startup': 132374528,
+ 'responses_per_minute': None,
+ 'start_time': datetime.datetime(2025, 2, 25, 14, 12, 29, 354360, tzinfo=datetime.timezone.utc)}
+2025-02-25 19:13:36 [scrapy.core.engine] INFO: Spider closed (finished)
+2025-02-25 19:22:22 [scrapy.utils.log] INFO: Scrapy 2.12.0 started (bot: linkedin_scraper)
+2025-02-25 19:22:22 [scrapy.utils.log] INFO: Versions: lxml 5.3.1.0, libxml2 2.12.9, cssselect 1.2.0, parsel 1.10.0, w3lib 2.3.1, Twisted 24.11.0, Python 3.12.3 (main, Feb  4 2025, 14:48:35) [GCC 13.3.0], pyOpenSSL 25.0.0 (OpenSSL 3.4.1 11 Feb 2025), cryptography 44.0.1, Platform Linux-6.11.0-17-generic-x86_64-with-glibc2.39
+2025-02-25 19:22:22 [scrapy.addons] INFO: Enabled addons:
+[]
+2025-02-25 19:22:22 [scrapy.extensions.telnet] INFO: Telnet Password: 93207ed5019d544f
+2025-02-25 19:22:22 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.feedexport.FeedExporter',
+ 'scrapy.extensions.logstats.LogStats']
+2025-02-25 19:22:22 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'linkedin_scraper',
+ 'CONCURRENT_REQUESTS': 10,
+ 'DOWNLOAD_DELAY': 3,
+ 'FEED_EXPORT_ENCODING': 'utf-8',
+ 'LOG_FILE': 'scrapy_logs.txt',
+ 'LOG_LEVEL': 'INFO',
+ 'NEWSPIDER_MODULE': 'linkedin_scraper.spiders',
+ 'RETRY_HTTP_CODES': [429, 500, 502, 503, 504, 522, 524, 408, 403],
+ 'RETRY_TIMES': 5,
+ 'SPIDER_MODULES': ['linkedin_scraper.spiders'],
+ 'TWISTED_REACTOR': 'twisted.internet.asyncioreactor.AsyncioSelectorReactor',
+ 'USER_AGENT': None}
+2025-02-25 19:22:22 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'linkedin_scraper.middlewares.CustomRetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2025-02-25 19:22:22 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2025-02-25 19:22:22 [scrapy.middleware] INFO: Enabled item pipelines:
+[]
+2025-02-25 19:22:22 [scrapy.core.engine] INFO: Spider opened
+2025-02-25 19:22:22 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2025-02-25 19:22:22 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
+2025-02-25 19:22:24 [undetected_chromedriver.patcher] INFO: patching driver executable /home/user/.local/share/undetected_chromedriver/undetected_chromedriver
+2025-02-25 19:22:31 [undetected_chromedriver.patcher] INFO: patching driver executable /home/user/.local/share/undetected_chromedriver/undetected_chromedriver
+2025-02-25 19:22:36 [google_jobs] INFO: No location not now button
+2025-02-25 19:22:44 [google_jobs] INFO: Stop flag detected during scrolling. Stopping scraper.
+2025-02-25 19:22:45 [scrapy.core.engine] INFO: Closing spider (finished)
+2025-02-25 19:22:45 [scrapy.extensions.feedexport] INFO: Stored json feed (0 items) in: data/google_jobs_2025-02-25T14-22-22+00-00.json
+2025-02-25 19:22:45 [scrapy.extensions.feedexport] INFO: Stored csv feed (0 items) in: data/google_jobs_2025-02-25T14-22-22+00-00.csv
+2025-02-25 19:22:45 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'elapsed_time_seconds': 22.819534,
+ 'feedexport/success_count/FileFeedStorage': 2,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2025, 2, 25, 14, 22, 45, 154189, tzinfo=datetime.timezone.utc),
+ 'items_per_minute': None,
+ 'log_count/INFO': 16,
+ 'memusage/max': 136167424,
+ 'memusage/startup': 136167424,
+ 'responses_per_minute': None,
+ 'start_time': datetime.datetime(2025, 2, 25, 14, 22, 22, 334655, tzinfo=datetime.timezone.utc)}
+2025-02-25 19:22:45 [scrapy.core.engine] INFO: Spider closed (finished)
+2025-02-25 19:26:04 [scrapy.utils.log] INFO: Scrapy 2.12.0 started (bot: linkedin_scraper)
+2025-02-25 19:26:04 [scrapy.utils.log] INFO: Versions: lxml 5.3.1.0, libxml2 2.12.9, cssselect 1.2.0, parsel 1.10.0, w3lib 2.3.1, Twisted 24.11.0, Python 3.12.3 (main, Feb  4 2025, 14:48:35) [GCC 13.3.0], pyOpenSSL 25.0.0 (OpenSSL 3.4.1 11 Feb 2025), cryptography 44.0.1, Platform Linux-6.11.0-17-generic-x86_64-with-glibc2.39
+2025-02-25 19:26:04 [scrapy.addons] INFO: Enabled addons:
+[]
+2025-02-25 19:26:04 [scrapy.extensions.telnet] INFO: Telnet Password: b3f158e18e28f878
+2025-02-25 19:26:04 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.feedexport.FeedExporter',
+ 'scrapy.extensions.logstats.LogStats']
+2025-02-25 19:26:04 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'linkedin_scraper',
+ 'CONCURRENT_REQUESTS': 10,
+ 'DOWNLOAD_DELAY': 3,
+ 'FEED_EXPORT_ENCODING': 'utf-8',
+ 'LOG_FILE': 'scrapy_logs.txt',
+ 'LOG_LEVEL': 'INFO',
+ 'NEWSPIDER_MODULE': 'linkedin_scraper.spiders',
+ 'RETRY_HTTP_CODES': [429, 500, 502, 503, 504, 522, 524, 408, 403],
+ 'RETRY_TIMES': 5,
+ 'SPIDER_MODULES': ['linkedin_scraper.spiders'],
+ 'TWISTED_REACTOR': 'twisted.internet.asyncioreactor.AsyncioSelectorReactor',
+ 'USER_AGENT': None}
+2025-02-25 19:26:04 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'linkedin_scraper.middlewares.CustomRetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2025-02-25 19:26:04 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2025-02-25 19:26:04 [scrapy.middleware] INFO: Enabled item pipelines:
+[]
+2025-02-25 19:26:04 [scrapy.core.engine] INFO: Spider opened
+2025-02-25 19:26:04 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2025-02-25 19:26:04 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
+2025-02-25 19:26:07 [undetected_chromedriver.patcher] INFO: patching driver executable /home/user/.local/share/undetected_chromedriver/undetected_chromedriver
+2025-02-25 19:26:15 [undetected_chromedriver.patcher] INFO: patching driver executable /home/user/.local/share/undetected_chromedriver/undetected_chromedriver
+2025-02-25 19:26:20 [google_jobs] INFO: No location not now button
+2025-02-25 19:27:04 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 8 items (at 8 items/min)
+2025-02-25 19:27:14 [scrapy.core.engine] INFO: Closing spider (finished)
+2025-02-25 19:27:14 [scrapy.extensions.feedexport] INFO: Stored json feed (10 items) in: data/google_jobs_2025-02-25T14-26-04+00-00.json
+2025-02-25 19:27:14 [scrapy.extensions.feedexport] INFO: Stored csv feed (10 items) in: data/google_jobs_2025-02-25T14-26-04+00-00.csv
+2025-02-25 19:27:14 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'elapsed_time_seconds': 70.349388,
+ 'feedexport/success_count/FileFeedStorage': 2,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2025, 2, 25, 14, 27, 14, 570163, tzinfo=datetime.timezone.utc),
+ 'item_scraped_count': 10,
+ 'items_per_minute': None,
+ 'log_count/INFO': 16,
+ 'memusage/max': 132354048,
+ 'memusage/startup': 132354048,
+ 'responses_per_minute': None,
+ 'start_time': datetime.datetime(2025, 2, 25, 14, 26, 4, 220775, tzinfo=datetime.timezone.utc)}
+2025-02-25 19:27:14 [scrapy.core.engine] INFO: Spider closed (finished)
+2025-02-25 19:30:31 [scrapy.utils.log] INFO: Scrapy 2.12.0 started (bot: linkedin_scraper)
+2025-02-25 19:30:31 [scrapy.utils.log] INFO: Versions: lxml 5.3.1.0, libxml2 2.12.9, cssselect 1.2.0, parsel 1.10.0, w3lib 2.3.1, Twisted 24.11.0, Python 3.12.3 (main, Feb  4 2025, 14:48:35) [GCC 13.3.0], pyOpenSSL 25.0.0 (OpenSSL 3.4.1 11 Feb 2025), cryptography 44.0.1, Platform Linux-6.11.0-17-generic-x86_64-with-glibc2.39
+2025-02-25 19:30:31 [scrapy.addons] INFO: Enabled addons:
+[]
+2025-02-25 19:30:31 [scrapy.extensions.telnet] INFO: Telnet Password: 3f8a239881c5da79
+2025-02-25 19:30:31 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.feedexport.FeedExporter',
+ 'scrapy.extensions.logstats.LogStats']
+2025-02-25 19:30:31 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'linkedin_scraper',
+ 'CONCURRENT_REQUESTS': 10,
+ 'DOWNLOAD_DELAY': 3,
+ 'FEED_EXPORT_ENCODING': 'utf-8',
+ 'LOG_FILE': 'scrapy_logs.txt',
+ 'LOG_LEVEL': 'INFO',
+ 'NEWSPIDER_MODULE': 'linkedin_scraper.spiders',
+ 'RETRY_HTTP_CODES': [429, 500, 502, 503, 504, 522, 524, 408, 403],
+ 'RETRY_TIMES': 5,
+ 'SPIDER_MODULES': ['linkedin_scraper.spiders'],
+ 'TWISTED_REACTOR': 'twisted.internet.asyncioreactor.AsyncioSelectorReactor',
+ 'USER_AGENT': None}
+2025-02-25 19:30:31 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'linkedin_scraper.middlewares.CustomRetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2025-02-25 19:30:31 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2025-02-25 19:30:31 [scrapy.middleware] INFO: Enabled item pipelines:
+[]
+2025-02-25 19:30:31 [scrapy.core.engine] INFO: Spider opened
+2025-02-25 19:30:31 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2025-02-25 19:30:31 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
+2025-02-25 19:30:35 [undetected_chromedriver.patcher] INFO: patching driver executable /home/user/.local/share/undetected_chromedriver/undetected_chromedriver
+2025-02-25 19:30:43 [undetected_chromedriver.patcher] INFO: patching driver executable /home/user/.local/share/undetected_chromedriver/undetected_chromedriver
+2025-02-25 19:30:50 [google_jobs] INFO: No location not now button
+2025-02-25 19:31:31 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 7 items (at 7 items/min)
+2025-02-25 19:31:46 [scrapy.core.engine] INFO: Closing spider (finished)
+2025-02-25 19:31:46 [scrapy.extensions.feedexport] INFO: Stored json feed (10 items) in: data/google_jobs_2025-02-25T14-30-31+00-00.json
+2025-02-25 19:31:46 [scrapy.extensions.feedexport] INFO: Stored csv feed (10 items) in: data/google_jobs_2025-02-25T14-30-31+00-00.csv
+2025-02-25 19:31:46 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'elapsed_time_seconds': 75.348573,
+ 'feedexport/success_count/FileFeedStorage': 2,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2025, 2, 25, 14, 31, 46, 970915, tzinfo=datetime.timezone.utc),
+ 'item_scraped_count': 10,
+ 'items_per_minute': None,
+ 'log_count/INFO': 16,
+ 'memusage/max': 132059136,
+ 'memusage/startup': 132059136,
+ 'responses_per_minute': None,
+ 'start_time': datetime.datetime(2025, 2, 25, 14, 30, 31, 622342, tzinfo=datetime.timezone.utc)}
+2025-02-25 19:31:46 [scrapy.core.engine] INFO: Spider closed (finished)
+2025-02-25 19:36:56 [scrapy.utils.log] INFO: Scrapy 2.12.0 started (bot: linkedin_scraper)
+2025-02-25 19:36:56 [scrapy.utils.log] INFO: Versions: lxml 5.3.1.0, libxml2 2.12.9, cssselect 1.2.0, parsel 1.10.0, w3lib 2.3.1, Twisted 24.11.0, Python 3.12.3 (main, Feb  4 2025, 14:48:35) [GCC 13.3.0], pyOpenSSL 25.0.0 (OpenSSL 3.4.1 11 Feb 2025), cryptography 44.0.1, Platform Linux-6.11.0-17-generic-x86_64-with-glibc2.39
+2025-02-25 19:36:56 [scrapy.addons] INFO: Enabled addons:
+[]
+2025-02-25 19:36:56 [scrapy.extensions.telnet] INFO: Telnet Password: 7c1870829e0d203a
+2025-02-25 19:36:56 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.feedexport.FeedExporter',
+ 'scrapy.extensions.logstats.LogStats']
+2025-02-25 19:36:56 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'linkedin_scraper',
+ 'CONCURRENT_REQUESTS': 10,
+ 'DOWNLOAD_DELAY': 3,
+ 'FEED_EXPORT_ENCODING': 'utf-8',
+ 'LOG_FILE': 'scrapy_logs.txt',
+ 'LOG_LEVEL': 'INFO',
+ 'NEWSPIDER_MODULE': 'linkedin_scraper.spiders',
+ 'RETRY_HTTP_CODES': [429, 500, 502, 503, 504, 522, 524, 408, 403],
+ 'RETRY_TIMES': 5,
+ 'SPIDER_MODULES': ['linkedin_scraper.spiders'],
+ 'TWISTED_REACTOR': 'twisted.internet.asyncioreactor.AsyncioSelectorReactor',
+ 'USER_AGENT': None}
+2025-02-25 19:36:56 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'linkedin_scraper.middlewares.CustomRetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2025-02-25 19:36:56 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2025-02-25 19:36:56 [scrapy.middleware] INFO: Enabled item pipelines:
+[]
+2025-02-25 19:36:56 [scrapy.core.engine] INFO: Spider opened
+2025-02-25 19:36:56 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2025-02-25 19:36:56 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
+2025-02-25 19:36:56 [google_jobs] INFO: Stop flag detected. Stopping scraper.
+2025-02-25 19:36:56 [scrapy.core.engine] INFO: Closing spider (finished)
+2025-02-25 19:36:56 [scrapy.extensions.feedexport] INFO: Stored json feed (0 items) in: data/google_jobs_2025-02-25T14-36-56+00-00.json
+2025-02-25 19:36:56 [scrapy.extensions.feedexport] INFO: Stored csv feed (0 items) in: data/google_jobs_2025-02-25T14-36-56+00-00.csv
+2025-02-25 19:36:56 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'elapsed_time_seconds': 0.002282,
+ 'feedexport/success_count/FileFeedStorage': 2,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2025, 2, 25, 14, 36, 56, 928531, tzinfo=datetime.timezone.utc),
+ 'items_per_minute': None,
+ 'log_count/INFO': 13,
+ 'memusage/max': 132182016,
+ 'memusage/startup': 132182016,
+ 'responses_per_minute': None,
+ 'start_time': datetime.datetime(2025, 2, 25, 14, 36, 56, 926249, tzinfo=datetime.timezone.utc)}
+2025-02-25 19:36:56 [scrapy.core.engine] INFO: Spider closed (finished)
+2025-02-25 19:41:00 [scrapy.utils.log] INFO: Scrapy 2.12.0 started (bot: linkedin_scraper)
+2025-02-25 19:41:00 [scrapy.utils.log] INFO: Versions: lxml 5.3.1.0, libxml2 2.12.9, cssselect 1.2.0, parsel 1.10.0, w3lib 2.3.1, Twisted 24.11.0, Python 3.12.3 (main, Feb  4 2025, 14:48:35) [GCC 13.3.0], pyOpenSSL 25.0.0 (OpenSSL 3.4.1 11 Feb 2025), cryptography 44.0.1, Platform Linux-6.11.0-17-generic-x86_64-with-glibc2.39
+2025-02-25 19:41:00 [scrapy.addons] INFO: Enabled addons:
+[]
+2025-02-25 19:41:00 [scrapy.extensions.telnet] INFO: Telnet Password: f12f957693c007d8
+2025-02-25 19:41:00 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.feedexport.FeedExporter',
+ 'scrapy.extensions.logstats.LogStats']
+2025-02-25 19:41:00 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'linkedin_scraper',
+ 'CONCURRENT_REQUESTS': 10,
+ 'DOWNLOAD_DELAY': 3,
+ 'FEED_EXPORT_ENCODING': 'utf-8',
+ 'LOG_FILE': 'scrapy_logs.txt',
+ 'LOG_LEVEL': 'INFO',
+ 'NEWSPIDER_MODULE': 'linkedin_scraper.spiders',
+ 'RETRY_HTTP_CODES': [429, 500, 502, 503, 504, 522, 524, 408, 403],
+ 'RETRY_TIMES': 5,
+ 'SPIDER_MODULES': ['linkedin_scraper.spiders'],
+ 'TWISTED_REACTOR': 'twisted.internet.asyncioreactor.AsyncioSelectorReactor',
+ 'USER_AGENT': None}
+2025-02-25 19:41:00 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'linkedin_scraper.middlewares.CustomRetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2025-02-25 19:41:00 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2025-02-25 19:41:00 [scrapy.middleware] INFO: Enabled item pipelines:
+[]
+2025-02-25 19:41:00 [scrapy.core.engine] INFO: Spider opened
+2025-02-25 19:41:00 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2025-02-25 19:41:00 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
+2025-02-25 19:41:03 [undetected_chromedriver.patcher] INFO: patching driver executable /home/user/.local/share/undetected_chromedriver/undetected_chromedriver
+2025-02-25 19:41:11 [undetected_chromedriver.patcher] INFO: patching driver executable /home/user/.local/share/undetected_chromedriver/undetected_chromedriver
+2025-02-25 19:41:16 [google_jobs] INFO: No location not now button
+2025-02-25 19:42:00 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 8 items (at 8 items/min)
+2025-02-25 19:42:10 [scrapy.core.engine] INFO: Closing spider (finished)
+2025-02-25 19:42:10 [scrapy.extensions.feedexport] INFO: Stored json feed (10 items) in: data/google_jobs_2025-02-25T14-41-00+00-00.json
+2025-02-25 19:42:10 [scrapy.extensions.feedexport] INFO: Stored csv feed (10 items) in: data/google_jobs_2025-02-25T14-41-00+00-00.csv
+2025-02-25 19:42:10 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'elapsed_time_seconds': 70.332256,
+ 'feedexport/success_count/FileFeedStorage': 2,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2025, 2, 25, 14, 42, 10, 552768, tzinfo=datetime.timezone.utc),
+ 'item_scraped_count': 10,
+ 'items_per_minute': None,
+ 'log_count/INFO': 16,
+ 'memusage/max': 132411392,
+ 'memusage/startup': 132411392,
+ 'responses_per_minute': None,
+ 'start_time': datetime.datetime(2025, 2, 25, 14, 41, 0, 220512, tzinfo=datetime.timezone.utc)}
+2025-02-25 19:42:10 [scrapy.core.engine] INFO: Spider closed (finished)
+2025-02-25 19:50:35 [scrapy.utils.log] INFO: Scrapy 2.12.0 started (bot: linkedin_scraper)
+2025-02-25 19:50:35 [scrapy.utils.log] INFO: Versions: lxml 5.3.1.0, libxml2 2.12.9, cssselect 1.2.0, parsel 1.10.0, w3lib 2.3.1, Twisted 24.11.0, Python 3.12.3 (main, Feb  4 2025, 14:48:35) [GCC 13.3.0], pyOpenSSL 25.0.0 (OpenSSL 3.4.1 11 Feb 2025), cryptography 44.0.1, Platform Linux-6.11.0-17-generic-x86_64-with-glibc2.39
+2025-02-25 19:50:35 [scrapy.addons] INFO: Enabled addons:
+[]
+2025-02-25 19:50:35 [scrapy.extensions.telnet] INFO: Telnet Password: c39e78fcc1cddbac
+2025-02-25 19:50:35 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.feedexport.FeedExporter',
+ 'scrapy.extensions.logstats.LogStats']
+2025-02-25 19:50:35 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'linkedin_scraper',
+ 'CONCURRENT_REQUESTS': 10,
+ 'DOWNLOAD_DELAY': 3,
+ 'FEED_EXPORT_ENCODING': 'utf-8',
+ 'LOG_FILE': 'scrapy_logs.txt',
+ 'LOG_LEVEL': 'INFO',
+ 'NEWSPIDER_MODULE': 'linkedin_scraper.spiders',
+ 'RETRY_HTTP_CODES': [429, 500, 502, 503, 504, 522, 524, 408, 403],
+ 'RETRY_TIMES': 5,
+ 'SPIDER_MODULES': ['linkedin_scraper.spiders'],
+ 'TWISTED_REACTOR': 'twisted.internet.asyncioreactor.AsyncioSelectorReactor',
+ 'USER_AGENT': None}
+2025-02-25 19:50:35 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'linkedin_scraper.middlewares.CustomRetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2025-02-25 19:50:35 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2025-02-25 19:50:35 [scrapy.middleware] INFO: Enabled item pipelines:
+[]
+2025-02-25 19:50:35 [scrapy.core.engine] INFO: Spider opened
+2025-02-25 19:50:35 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2025-02-25 19:50:35 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
+2025-02-25 19:50:40 [undetected_chromedriver.patcher] INFO: patching driver executable /home/user/.local/share/undetected_chromedriver/undetected_chromedriver
+2025-02-25 19:51:13 [scrapy.core.engine] INFO: Closing spider (finished)
+2025-02-25 19:51:13 [scrapy.extensions.feedexport] INFO: Stored json feed (9 items) in: data/linkedin_post_2025-02-25T14-50-35+00-00.json
+2025-02-25 19:51:13 [scrapy.extensions.feedexport] INFO: Stored csv feed (9 items) in: data/linkedin_post_2025-02-25T14-50-35+00-00.csv
+2025-02-25 19:51:13 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'downloader/request_bytes': 456,
+ 'downloader/request_count': 1,
+ 'downloader/request_method_count/GET': 1,
+ 'downloader/response_bytes': 164334,
+ 'downloader/response_count': 1,
+ 'downloader/response_status_count/200': 1,
+ 'elapsed_time_seconds': 38.32127,
+ 'feedexport/success_count/FileFeedStorage': 2,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2025, 2, 25, 14, 51, 13, 408852, tzinfo=datetime.timezone.utc),
+ 'httpcompression/response_bytes': 1439174,
+ 'httpcompression/response_count': 1,
+ 'item_scraped_count': 9,
+ 'items_per_minute': None,
+ 'log_count/INFO': 13,
+ 'memusage/max': 135950336,
+ 'memusage/startup': 135950336,
+ 'response_received_count': 1,
+ 'responses_per_minute': None,
+ 'scheduler/dequeued': 1,
+ 'scheduler/dequeued/memory': 1,
+ 'scheduler/enqueued': 1,
+ 'scheduler/enqueued/memory': 1,
+ 'start_time': datetime.datetime(2025, 2, 25, 14, 50, 35, 87582, tzinfo=datetime.timezone.utc)}
+2025-02-25 19:51:13 [scrapy.core.engine] INFO: Spider closed (finished)
+2025-02-25 19:52:48 [scrapy.utils.log] INFO: Scrapy 2.12.0 started (bot: linkedin_scraper)
+2025-02-25 19:52:48 [scrapy.utils.log] INFO: Versions: lxml 5.3.1.0, libxml2 2.12.9, cssselect 1.2.0, parsel 1.10.0, w3lib 2.3.1, Twisted 24.11.0, Python 3.12.3 (main, Feb  4 2025, 14:48:35) [GCC 13.3.0], pyOpenSSL 25.0.0 (OpenSSL 3.4.1 11 Feb 2025), cryptography 44.0.1, Platform Linux-6.11.0-17-generic-x86_64-with-glibc2.39
+2025-02-25 19:52:48 [scrapy.addons] INFO: Enabled addons:
+[]
+2025-02-25 19:52:48 [scrapy.extensions.telnet] INFO: Telnet Password: 3989b0e92787f361
+2025-02-25 19:52:48 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.feedexport.FeedExporter',
+ 'scrapy.extensions.logstats.LogStats']
+2025-02-25 19:52:48 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'linkedin_scraper',
+ 'CONCURRENT_REQUESTS': 10,
+ 'DOWNLOAD_DELAY': 3,
+ 'FEED_EXPORT_ENCODING': 'utf-8',
+ 'LOG_FILE': 'scrapy_logs.txt',
+ 'LOG_LEVEL': 'INFO',
+ 'NEWSPIDER_MODULE': 'linkedin_scraper.spiders',
+ 'RETRY_HTTP_CODES': [429, 500, 502, 503, 504, 522, 524, 408, 403],
+ 'RETRY_TIMES': 5,
+ 'SPIDER_MODULES': ['linkedin_scraper.spiders'],
+ 'TWISTED_REACTOR': 'twisted.internet.asyncioreactor.AsyncioSelectorReactor',
+ 'USER_AGENT': None}
+2025-02-25 19:52:48 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'linkedin_scraper.middlewares.CustomRetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2025-02-25 19:52:48 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2025-02-25 19:52:48 [scrapy.middleware] INFO: Enabled item pipelines:
+[]
+2025-02-25 19:52:48 [scrapy.core.engine] INFO: Spider opened
+2025-02-25 19:52:48 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2025-02-25 19:52:48 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
+2025-02-25 19:52:53 [undetected_chromedriver.patcher] INFO: patching driver executable /home/user/.local/share/undetected_chromedriver/undetected_chromedriver
+2025-02-25 19:53:25 [scrapy.core.engine] INFO: Closing spider (finished)
+2025-02-25 19:53:25 [scrapy.extensions.feedexport] INFO: Stored json feed (12 items) in: data/linkedin_post_2025-02-25T14-52-48+00-00.json
+2025-02-25 19:53:25 [scrapy.extensions.feedexport] INFO: Stored csv feed (12 items) in: data/linkedin_post_2025-02-25T14-52-48+00-00.csv
+2025-02-25 19:53:25 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'downloader/request_bytes': 483,
+ 'downloader/request_count': 1,
+ 'downloader/request_method_count/GET': 1,
+ 'downloader/response_bytes': 161807,
+ 'downloader/response_count': 1,
+ 'downloader/response_status_count/200': 1,
+ 'elapsed_time_seconds': 36.699939,
+ 'feedexport/success_count/FileFeedStorage': 2,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2025, 2, 25, 14, 53, 25, 291309, tzinfo=datetime.timezone.utc),
+ 'httpcompression/response_bytes': 1446779,
+ 'httpcompression/response_count': 1,
+ 'item_scraped_count': 12,
+ 'items_per_minute': None,
+ 'log_count/INFO': 13,
+ 'memusage/max': 135950336,
+ 'memusage/startup': 135950336,
+ 'response_received_count': 1,
+ 'responses_per_minute': None,
+ 'scheduler/dequeued': 1,
+ 'scheduler/dequeued/memory': 1,
+ 'scheduler/enqueued': 1,
+ 'scheduler/enqueued/memory': 1,
+ 'start_time': datetime.datetime(2025, 2, 25, 14, 52, 48, 591370, tzinfo=datetime.timezone.utc)}
+2025-02-25 19:53:25 [scrapy.core.engine] INFO: Spider closed (finished)
+2025-02-25 20:31:49 [scrapy.utils.log] INFO: Scrapy 2.12.0 started (bot: linkedin_scraper)
+2025-02-25 20:31:49 [scrapy.utils.log] INFO: Versions: lxml 5.3.1.0, libxml2 2.12.9, cssselect 1.2.0, parsel 1.10.0, w3lib 2.3.1, Twisted 24.11.0, Python 3.12.3 (main, Feb  4 2025, 14:48:35) [GCC 13.3.0], pyOpenSSL 25.0.0 (OpenSSL 3.4.1 11 Feb 2025), cryptography 44.0.1, Platform Linux-6.11.0-17-generic-x86_64-with-glibc2.39
+2025-02-25 20:31:49 [scrapy.addons] INFO: Enabled addons:
+[]
+2025-02-25 20:31:49 [scrapy.extensions.telnet] INFO: Telnet Password: 36e72b89399bd8f4
+2025-02-25 20:31:49 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.feedexport.FeedExporter',
+ 'scrapy.extensions.logstats.LogStats']
+2025-02-25 20:31:49 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'linkedin_scraper',
+ 'CONCURRENT_REQUESTS': 10,
+ 'DOWNLOAD_DELAY': 3,
+ 'FEED_EXPORT_ENCODING': 'utf-8',
+ 'LOG_FILE': 'scrapy_logs.txt',
+ 'LOG_LEVEL': 'INFO',
+ 'NEWSPIDER_MODULE': 'linkedin_scraper.spiders',
+ 'RETRY_HTTP_CODES': [429, 500, 502, 503, 504, 522, 524, 408, 403],
+ 'RETRY_TIMES': 5,
+ 'SPIDER_MODULES': ['linkedin_scraper.spiders'],
+ 'TWISTED_REACTOR': 'twisted.internet.asyncioreactor.AsyncioSelectorReactor',
+ 'USER_AGENT': None}
+2025-02-25 20:31:49 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'linkedin_scraper.middlewares.CustomRetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2025-02-25 20:31:49 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2025-02-25 20:31:49 [scrapy.middleware] INFO: Enabled item pipelines:
+[]
+2025-02-25 20:31:49 [scrapy.core.engine] INFO: Spider opened
+2025-02-25 20:31:49 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2025-02-25 20:31:49 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
+2025-02-25 20:31:52 [undetected_chromedriver.patcher] INFO: patching driver executable /home/user/.local/share/undetected_chromedriver/undetected_chromedriver
+2025-02-25 20:32:01 [undetected_chromedriver.patcher] INFO: patching driver executable /home/user/.local/share/undetected_chromedriver/undetected_chromedriver
+2025-02-25 20:32:08 [google_jobs] INFO: No location not now button
+2025-02-25 20:32:49 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 7 items (at 7 items/min)
+2025-02-25 20:33:05 [scrapy.core.engine] INFO: Closing spider (finished)
+2025-02-25 20:33:05 [scrapy.extensions.feedexport] INFO: Stored json feed (10 items) in: data/google_jobs_2025-02-25T15-31-49+00-00.json
+2025-02-25 20:33:05 [scrapy.extensions.feedexport] INFO: Stored csv feed (10 items) in: data/google_jobs_2025-02-25T15-31-49+00-00.csv
+2025-02-25 20:33:05 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'elapsed_time_seconds': 75.587673,
+ 'feedexport/success_count/FileFeedStorage': 2,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2025, 2, 25, 15, 33, 5, 165862, tzinfo=datetime.timezone.utc),
+ 'item_scraped_count': 10,
+ 'items_per_minute': None,
+ 'log_count/INFO': 16,
+ 'memusage/max': 132222976,
+ 'memusage/startup': 132222976,
+ 'responses_per_minute': None,
+ 'start_time': datetime.datetime(2025, 2, 25, 15, 31, 49, 578189, tzinfo=datetime.timezone.utc)}
+2025-02-25 20:33:05 [scrapy.core.engine] INFO: Spider closed (finished)

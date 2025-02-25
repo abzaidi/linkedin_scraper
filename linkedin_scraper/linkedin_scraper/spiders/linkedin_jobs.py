@@ -42,7 +42,6 @@ class LinkedInJobSpider(scrapy.Spider):
     def __init__(self, *args, **kwargs):
         super(LinkedInJobSpider, self).__init__(*args, **kwargs)
 
-        # ✅ Get values dynamically from environment variables (set by Streamlit UI)
         self.KEYWORDS = os.getenv("LINKEDIN_JOB_KEYWORDS", "Python Developer").split(",")
         self.LOCATION = os.getenv("LINKEDIN_JOB_LOCATION", "United States")
         self.SESSION_ID = os.getenv("LINKEDIN_JOB_SESSION_ID", "")
@@ -50,15 +49,12 @@ class LinkedInJobSpider(scrapy.Spider):
         self.EXPERIENCE_LEVELS = os.getenv("LINKEDIN_JOB_EXPERIENCE_LEVELS", "").split(",")
         self.JOB_TYPES = os.getenv("LINKEDIN_JOB_TYPES", "").split(",")
 
-        # ✅ Ensure session ID is properly passed
         self.COOKIES = {'li_at': self.SESSION_ID}
 
-        # ✅ Generate the URL dynamically
         self.start_urls = [self.build_linkedin_jobs_url(self.KEYWORDS, self.LOCATION, self.DATE_POSTED, self.EXPERIENCE_LEVELS, self.JOB_TYPES)]
         self.scraped_urls = set()
 
 
-    # SESSION_ID = 'AQEDAVfxB5UFTrdQAAABlR5UOzwAAAGVQmC_PFYAf7CMEwRIp0SZD_EYgPT5w_GcspTCtgoHGUKwvaz4dyXVYm75ojI9WZORnfC4_RBOcT4k5hE-iPouB12jPIuzT9ZZc8AloYTacnU1sKTuIxJetAhw'
 
     def build_linkedin_jobs_url(self, keywords, location, date_posted, experience_levels, job_types):
         """Builds a LinkedIn Jobs Search URL dynamically based on user inputs."""
@@ -68,12 +64,10 @@ class LinkedInJobSpider(scrapy.Spider):
         encoded_keywords = urllib.parse.quote(formatted_keywords)
         encoded_location = urllib.parse.quote(location)
 
-        # ✅ Get selected filters dynamically
         date_posted_value = self.DATE_POSTED_OPTIONS.get(date_posted, "")
         experience_level_values = ",".join([self.EXPERIENCE_LEVEL_OPTIONS.get(level.lower(), "") for level in experience_levels if level.lower() in self.EXPERIENCE_LEVEL_OPTIONS])
         job_type_values = ",".join([self.JOB_TYPE_OPTIONS.get(jt.lower(), "") for jt in job_types if jt.lower() in self.JOB_TYPE_OPTIONS])
 
-        # ✅ Construct the LinkedIn Jobs search URL with filters
         params = {
             "keywords": encoded_keywords,
             "location": encoded_location,
@@ -82,7 +76,6 @@ class LinkedInJobSpider(scrapy.Spider):
             "f_WT": job_type_values,
         }
 
-        # ✅ Remove empty parameters
         params = {k: v for k, v in params.items() if v}
 
         return base_url + "&".join([f"{k}={v}" for k, v in params.items()])
@@ -90,14 +83,10 @@ class LinkedInJobSpider(scrapy.Spider):
 
     custom_settings = {
         'FEEDS': {
-            'data/%(name)s_%(time)s.json': {'format': 'json'},
             'data/%(name)s_%(time)s.csv': {'format': 'csv'},
         },
     }
 
-    # COOKIES = {
-    #     'li_at': SESSION_ID,
-    # }
 
 
     def start_requests(self):

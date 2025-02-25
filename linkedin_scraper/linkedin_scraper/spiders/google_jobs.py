@@ -16,7 +16,6 @@ class GoogleJobsSpider(scrapy.Spider):
     def __init__(self, *args, **kwargs):
         super(GoogleJobsSpider, self).__init__(*args, **kwargs)
         self.scraped_jobs = set()
-        # Get values from environment variables
         self.keywords = os.getenv("SCRAPER_KEYWORDS", "Python Developer").split(",")
         self.SCROLLS = int(os.getenv("SCRAPER_SCROLLS", 3))
 
@@ -31,7 +30,6 @@ class GoogleJobsSpider(scrapy.Spider):
 
     custom_settings = {
         'FEEDS': {
-            'data/%(name)s_%(time)s.json': {'format': 'json'},
             'data/%(name)s_%(time)s.csv': {'format': 'csv'},
         },
     }

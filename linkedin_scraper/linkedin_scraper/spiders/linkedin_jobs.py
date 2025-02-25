@@ -9,6 +9,7 @@ from selenium.webdriver.common.keys import Keys
 import urllib.parse
 import time
 import random
+import os
 
 class LinkedInJobSpider(scrapy.Spider):
     name = "linkedin_job"
@@ -38,18 +39,30 @@ class LinkedInJobSpider(scrapy.Spider):
         "any level": ""
     }
 
+    def __init__(self, *args, **kwargs):
+        super(LinkedInJobSpider, self).__init__(*args, **kwargs)
 
-    SESSION_ID = 'AQEDAVgUJm4CLj9iAAABlTjP_tsAAAGVXNyC204AzMzQ7qSQL_EwBPLrTp3l4bJEHcjby8hK3ej75rbeacM6PEE5ulqa5qR7sNEewpsNAp_WHfXTpI6YzksvznxLunY5QHpAjpHiW0B8MK9NyCOq1FZc'
+        self.KEYWORDS = os.getenv("LINKEDIN_JOB_KEYWORDS", "Python Developer").split(",")
+        self.LOCATION = os.getenv("LINKEDIN_JOB_LOCATION", "United States")
+        self.SESSION_ID = os.getenv("LINKEDIN_JOB_SESSION_ID", "")
+        self.DATE_POSTED = os.getenv("LINKEDIN_JOB_DATE_POSTED", "past 24 hours").lower()
+        self.EXPERIENCE_LEVELS = os.getenv("LINKEDIN_JOB_EXPERIENCE_LEVELS", "").split(",")
+        self.JOB_TYPES = os.getenv("LINKEDIN_JOB_TYPES", "").split(",")
+
+        self.COOKIES = {'li_at': self.SESSION_ID}
+
+        self.start_urls = [self.build_linkedin_jobs_url(self.KEYWORDS, self.LOCATION, self.DATE_POSTED, self.EXPERIENCE_LEVELS, self.JOB_TYPES)]
+        self.scraped_urls = set()
 
     def build_linkedin_jobs_url(self, keywords, location, date_posted, experience_levels, job_types):
+        """Builds a LinkedIn Jobs Search URL dynamically based on user inputs."""
         base_url = "https://www.linkedin.com/jobs/search/?"
 
         formatted_keywords = ", ".join([f"{keyword}" for keyword in keywords])
         encoded_keywords = urllib.parse.quote(formatted_keywords)
-
         encoded_location = urllib.parse.quote(location)
 
-        date_posted_value = self.DATE_POSTED_OPTIONS.get(date_posted.lower(), "")
+        date_posted_value = self.DATE_POSTED_OPTIONS.get(date_posted, "")
         experience_level_values = ",".join([self.EXPERIENCE_LEVEL_OPTIONS.get(level.lower(), "") for level in experience_levels if level.lower() in self.EXPERIENCE_LEVEL_OPTIONS])
         job_type_values = ",".join([self.JOB_TYPE_OPTIONS.get(jt.lower(), "") for jt in job_types if jt.lower() in self.JOB_TYPE_OPTIONS])
 
@@ -68,26 +81,11 @@ class LinkedInJobSpider(scrapy.Spider):
 
     custom_settings = {
         'FEEDS': {
-            'data/%(name)s_%(time)s.json': {'format': 'json'},
             'data/%(name)s_%(time)s.csv': {'format': 'csv'},
         },
     }
 
-    COOKIES = {
-        'li_at': SESSION_ID,
-    }
 
-    def __init__(self, *args, **kwargs):
-        super(LinkedInJobSpider, self).__init__(*args, **kwargs)
-        self.KEYWORDS = ["python developer", "django"]
-        self.LOCATION = "United States"
-        self.DATE_POSTED = "past 24 hours"
-        self.EXPERIENCE_LEVELS = []
-        self.JOB_TYPES = ["hybrid", "remote"]
-
-        self.start_urls = [self.build_linkedin_jobs_url(self.KEYWORDS, self.LOCATION, self.DATE_POSTED, self.EXPERIENCE_LEVELS, self.JOB_TYPES)]
-        # self.start_urls = ["https://www.linkedin.com/jobs/search/?currentJobId=4108512688&geoId=101022442&keywords=mern%20developer&origin=JOB_SEARCH_PAGE_SEARCH_BUTTON&refresh=true"]
-        self.scraped_urls = set()
 
     def start_requests(self):
         """ Start requests with LinkedIn session cookies. """

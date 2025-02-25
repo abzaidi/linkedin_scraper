@@ -7,62 +7,50 @@ from selenium.webdriver.support import expected_conditions as EC
 import urllib.parse
 import time
 import random
+import os
 
 class GoogleJobsSpider(scrapy.Spider):
     name = "google_jobs"
     allowed_domains = ["google.com"]
 
-    keywords = ["Python Developer", "Django", "Remote", "London"]
+    def __init__(self, *args, **kwargs):
+        super(GoogleJobsSpider, self).__init__(*args, **kwargs)
+        self.scraped_jobs = set()
+        self.keywords = os.getenv("SCRAPER_KEYWORDS", "Python Developer").split(",")
+        self.SCROLLS = int(os.getenv("SCRAPER_SCROLLS", 3))
 
-    SCROLLS = 0
-
-    def google_jobs_url(keywords):
+    def google_jobs_url(self):
         base_url = "https://www.google.com/search?"
-        
-        formatted_keywords = ", ".join([f'"{keyword}"' for keyword in keywords])
-        
+        formatted_keywords = ", ".join([f'"{keyword}"' for keyword in self.keywords])
         encoded_keywords = urllib.parse.quote(formatted_keywords)
-        
-        params = {
-            "q": encoded_keywords,
-        }
-        
+        params = {"q": encoded_keywords}
         return base_url + "&".join([f"{k}={v}" for k, v in params.items()])
 
-    start_urls = [google_jobs_url(keywords)]
+    start_urls = []
 
     custom_settings = {
         'FEEDS': {
-            'data/%(name)s_%(time)s.json': {'format': 'json'},
             'data/%(name)s_%(time)s.csv': {'format': 'csv'},
         },
     }
 
-    def __init__(self, *args, **kwargs):
-        super(GoogleJobsSpider, self).__init__(*args, **kwargs)
-        self.scraped_jobs = set()
-
     def start_requests(self):
-        sleep_time = random.uniform(3, 5)
-        
+        url = self.google_jobs_url()
+        self.start_urls.append(url)
+
         options = uc.ChromeOptions()
         options.binary_location = "/usr/bin/google-chrome"
-
         driver = uc.Chrome(options=options)
-        driver.maximize_window()
+        driver.get(url)
 
-        for url in self.start_urls:
-            driver.get(url)
-            time.sleep(sleep_time)
+        time.sleep(random.uniform(3, 5))
 
-            page_html = driver.page_source
+        page_html = driver.page_source
+        response = HtmlResponse(url=driver.current_url, body=page_html, encoding='utf-8')
 
-            response = HtmlResponse(url=driver.current_url, body=page_html, encoding='utf-8')
-
-            yield from self.parse(response)
+        yield from self.parse(response)
 
         driver.quit()
-
 
     def parse(self, response):
         

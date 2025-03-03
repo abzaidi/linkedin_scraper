@@ -102,7 +102,7 @@ class LinkedInJobSpider(scrapy.Spider):
         sleep_time = random.uniform(3, 5)
         
         options = uc.ChromeOptions()
-        options.binary_location = "/usr/bin/google-chrome"
+        # options.binary_location = "/usr/bin/google-chrome"
         driver = uc.Chrome(options=options)
 
         driver.maximize_window()
@@ -203,7 +203,7 @@ class LinkedInJobSpider(scrapy.Spider):
         sleep_time = random.uniform(3, 5)
 
         options = uc.ChromeOptions()
-        options.binary_location = "/usr/bin/google-chrome"
+        # options.binary_location = "/usr/bin/google-chrome"
         driver = uc.Chrome(options=options)
 
         driver.get("https://www.linkedin.com")
